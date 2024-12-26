@@ -1,13 +1,3 @@
-'''
-for each c1 cell: rehead the fasta to have >orfnum_cellname
-blsat again composite reference core to get non C1 core ORFs for that cell
-then take all cells non core and concatenate
-blast all against all?
-make orthologous gene groups, using edges and connected components
-
-write the groups to a file.
-then, for close cells, for ORFs that don't hit each other (non core), color by whether they are in a group with at least 1 other cell
-'''
 
 import C1_AllNT_Close_Pair_BLASTing as blastrepo
 import numpy as np
@@ -1526,8 +1516,7 @@ if  __name__ == '__main__':
 
         singleton_ORFs_per_cell(celllist,groupname)
 
-        #{0: 64, 1: 7, 2: 58, 3: 0, 4: 77, 5: 103, 6: 18, 7: 80, 8: 10, 9: 70, 10: 35, 11: 22, 12: 61, 13: 88, 14: 117, 15: 58, 16: 27, 17: 42, 18: 30, 19: 34, 20: 107, 21: 14, 22: 0, 23: 143, 24: 77, 25: 30, 26: 68, 27: 83, 28: 93, 29: 82, 30: 59, 31: 19, 32: 104, 33: 941, 34: 6, 35: 49, 36: 116, 37: 23, 38: 51, 39: 9, 40: 87, 41: 36, 42: 23, 43: 33, 44: 39, 45: 17, 46: 53, 47: 44, 48: 84, 49: 2, 50: 30, 51: 3, 52: 22}
-
+        
     if prog==1:
         groupname='HLII'
         celllist=hliilist2
@@ -1562,11 +1551,7 @@ if  __name__ == '__main__':
             celllist.remove('AG-347-K23')
         examine_doubletons_etc(celllist,groupname,C1bool)
 
-        '''
        
-        17744 orthogroups
-90189 total flex genes. 14399 singletons. 0.159654 genes are singletons, 0.811486 groups are singletons
-        '''
     if prog==3:
         groupname='HLII'#_bidir'
         C1bool=0
@@ -1627,205 +1612,4 @@ if  __name__ == '__main__':
         groupname="C1"
         celllist=C1_without_ribotype2
         estimate_flexgenes_per_cell(celllist,groupname)
-'''
-are we excluding the core genes?
-hlii non core: 245356 orfs. 167 cells. 1469 ORFs/cell
 
-all cells all genes 873996
-
-found problem: core_orfs were strings but myorf was int
-now 91388 ORFs; 547 per cell
-
-41048 orfs for bb no close non 9301 core
-
-c1 non core: 79583. 1530 per cell wtf
-found problem: redoing for C1 with C1-allnt_with_orthogroups file
-no 20367 ORFs, about 400/cell
-'''
-
-
-
-'''
-c1 doubletons (80,80,bidir)
-('B241_526B17', 'B241_529O19') 26 (not in close cliques)
-('B241_527L16', 'B243_495N16') 43 (clique 1 close pair)
-('B241_527P5', 'B241_528K19') 33 (cl1 close pair)
-('B241_529J11', 'B245a_518E10') 40 (cl2 close pair)---found by kashtan
-('B243_496N4', 'B243_498L10') 20 (not in close cliques)
-('B243_498F21', 'B245a_521O20') 19 (O20 in cl1; F21 not in close clique)
-
-
-
-triples new? 3-13-24 (qcov redone 60,80)
-
-'B241_526B17', 'B241_527L15', 'B241_529J16') 2
-('B241_526B22', 'B241_528N8', 'B245a_520B18') 3
-('B241_526B22', 'B243_498F21', 'B245a_520B18') 6
-('B241_527G5', 'B241_527N11', 'B241_528N8') 2
-('B241_527L15', 'B243_496E10', 'B243_498J20') 2
-('B241_527L15', 'B243_498P3', 'B245a_518K17') 3
-('B241_527L15', 'B245a_518K17', 'B245a_521M10') 2
-('B241_527L16', 'B241_528N20', 'B243_496E10') 2
-('B241_527P5', 'B241_528K19', 'B245a_521K15') 2
-('B241_527P5', 'B243_496E10', 'B243_498L10') 3
-('B241_528N8', 'B241_529J16', 'B243_495N16') 2
-('B241_529C4', 'B243_495K23', 'B245a_520E22') 2
-('B243_495K23', 'B243_496E10', 'B245a_520E22') 2
-('B243_496N4', 'B243_498F21', 'B243_498L10') 2
-
-
-
-BB:
-587 total doubletons, 
-Doubletons
-360 groups considered. 0.197222 from same sample, 0.520492 from same ocean, 116 (0.322222) not in Atl/Pac
-Probability a doubleton is from the same ocean if random shuffle: 0.365313
-Probability a doubleton is from the same sample if random shuffle: 0.227431
-Tripletons
-124 groups considered. 0.080645 from same sample, 0.287671 from same ocean, 51 (0.411290) not in Atl/Pac
-Probability a Tripleton is from the same ocean if random shuffle: 0.168825
-Probability a Tripleton is from the same sample if random shuffle: 0.065759
-('AG-347-L02', 'AG-402-N17') 22
-('AG-355-I04', 'AG-355-N02') 37
-587 doubletons total 587
-('AG-347-E23', 'AG-347-I04', 'AG-355-A09') 4
-('AG-347-E23', 'AG-347-K19', 'AG-355-A09') 3
-('AG-347-I06', 'AG-355-P15', 'AG-424-P16') 2
-('AG-347-I21', 'AG-347-M23', 'AG-355-A09') 2
-('AG-347-L02', 'AG-402-A04', 'AG-402-N17') 7
-('AG-347-L02', 'AG-418-J17', 'AG-449-O05') 3
-('AG-347-L02', 'AG-355-N16', 'AG-402-N17') 9
-('AG-347-G20', 'AG-347-L17', 'AG-347-L20') 9
-('AG-355-A09', 'AG-402-K16', 'AG-418-D13') 2
-('AG-347-G20', 'AG-355-I04', 'AG-402-A04') 2
-('AG-355-I04', 'AG-355-J09', 'AG-355-P18') 3
-('AG-355-J09', 'AG-402-K16', 'AG-418-J17') 14
-('AG-347-J06', 'AG-355-O17', 'AG-442-B03') 3
-('AG-355-B23', 'AG-402-K16', 'AG-418-D13') 4
-('AG-418-J17', 'AG-442-N07', 'AG-459-B06') 8
-('AG-347-C10', 'AG-402-A04', 'AG-402-N23') 2
-
-
-hlii
-
-1408 total doubletons, 
-Doubletons
-847 groups considered. 0.168831 from same sample, 0.545455 from same ocean, 319 (0.376623) not in Atl/Pac
-Probability a doubleton is from the same ocean if random shuffle: 0.325808
-Probability a doubleton is from the same sample if random shuffle: 0.170578
-Tripletons
-420 groups considered. 0.040476 from same sample, 0.310185 from same ocean, 204 (0.485714) not in Atl/Pac
-Probability a Tripleton is from the same ocean if random shuffle: 0.138615
-Probability a Tripleton is from the same sample if random shuffle: 0.039429
-
-('AG-347-L02', 'AG-402-N17') 22
-('AG-347-J23', 'AG-355-A09') 32
-('AG-355-I04', 'AG-355-N02') 36
-('AG-402-F05', 'AG-402-L23') 21
-('AG-402-N08', 'AG-418-I21') 20
-('AG-355-P15', 'AG-418-I20') 13
-('AG-347-J05', 'AG-347-M15') 24
-('AG-412-A14', 'AG-449-D16') 17
-('AG-347-C10', 'AG-670-M15') 11
-('AG-347-K02', 'AG-424-P23') 16
-('AG-347-M15', 'AG-459-N19') 18
-('AG-418-F16', 'AG-436-E22') 11
-1408 doubletons total 1408
-('AG-347-E23', 'AG-347-I04', 'AG-355-A09') 4
-('AG-347-E23', 'AG-347-K19', 'AG-355-A09') 3
-('AG-347-G18', 'AG-402-F05', 'AG-418-D13') 2
-('AG-347-G18', 'AG-355-N18', 'AG-355-N23') 3
-('AG-347-I04', 'AG-424-A03', 'AG-459-N19') 2
-('AG-347-I19', 'AG-347-K17', 'AG-347-L19') 7
-('AG-347-I21', 'AG-347-K17', 'AG-402-K16') 2
-('AG-347-J14', 'AG-418-I20', 'AG-449-D16') 2
-('AG-347-J19', 'AG-355-L02', 'AG-388-A01') 8
-('AG-347-J20', 'AG-347-K02', 'AG-424-P23') 5
-('AG-347-K17', 'AG-418-O03', 'AG-429-C19') 3
-('AG-347-K20', 'AG-402-G23', 'AG-449-K21') 3
-('AG-347-L02', 'AG-402-A04', 'AG-402-N17') 7
-('AG-347-L02', 'AG-355-N16', 'AG-402-N17') 5
-('AG-347-G20', 'AG-347-L17', 'AG-347-L20') 9
-('AG-355-B18', 'AG-355-J09', 'AG-355-N18') 2
-('AG-347-J05', 'AG-355-I04', 'AG-402-O16') 2
-('AG-355-I04', 'AG-402-O16', 'AG-459-D04') 4
-('AG-355-I04', 'AG-355-J09', 'AG-355-P18') 2
-('AG-355-K20', 'AG-402-N08', 'AG-418-I21') 3
-('AG-355-L02', 'AG-355-L21', 'AG-355-P11') 2
-('AG-388-F11', 'AG-402-I23', 'AG-418-P13') 2
-('AG-402-F05', 'AG-402-L23', 'AG-412-J13') 15
-('AG-347-C10', 'AG-402-K22', 'AG-402-L23') 2
-('AG-355-K23', 'AG-402-N08', 'AG-449-J16') 2
-('AG-355-B23', 'AG-402-K16', 'AG-418-D13') 4
-('AG-335-I15', 'AG-418-J17', 'AG-418-M21') 2
-('AG-335-I15', 'AG-347-I23', 'AG-418-M21') 2
-('AG-418-J17', 'AG-442-N07', 'AG-459-B06') 8
-('AG-347-J05', 'AG-347-M15', 'AG-459-N19') 12
-('AG-347-K22', 'AG-418-O03', 'AG-429-C19') 5
-('AG-355-M18', 'AG-429-E20', 'AG-449-D16') 2
-('AG-402-C22', 'AG-424-A14', 'AG-432-K16') 3
-('AG-355-M18', 'AG-355-N18', 'AG-449-D22') 2
-('AG-402-F05', 'AG-412-C21', 'AG-449-D22') 2
-('AG-347-C10', 'AG-347-I22', 'AG-670-M15') 3
-('AG-347-E03', 'AG-347-K02', 'AG-424-P23') 2
-('AG-347-G20', 'AG-402-A04', 'AG-449-J16') 2
-('AG-347-J06', 'AG-355-N18', 'AG-402-K22') 2
-('AG-347-O22', 'AG-418-P06', 'AG-449-C14') 8
-('AG-355-N18', 'AG-355-P15', 'AG-418-B17') 3
-('AG-412-C21', 'AG-418-F16', 'AG-436-E22') 2
-
-
-
-#################
-
-
-c1 60 80 after qcov correction (previously, had stored length in the qcov field)
-
-('B241_526B17', 'B241_529O19') 26 (not in close clique) 
-('B241_527L16', 'B243_495N16') 43 (cl1)
-('B241_527P5', 'B241_528K19') 33 (cl2)
-('B241_529J11', 'B245a_518E10') 40 (cl2)
-('B243_496N4', 'B243_498L10') 20 (not in clique)
-('B243_498F21', 'B245a_521O20') 19 (o20 in cl1, f21 not in clique)
-1025 doubletons total 1025
-
-
-('B241_526B17', 'B241_527L15', 'B241_529J16') 2 (l15 in cl5)
-('B241_526B22', 'B241_528N8', 'B245a_520B18') 3 (b22 in cl6, n8 in cl4)
-('B241_526B22', 'B243_498F21', 'B245a_520B18') 6 (b22 in cl6)
-('B241_527G5', 'B241_527N11', 'B241_528N8') 2 (n8 in cl4)
-('B241_527L15', 'B243_496E10', 'B243_498J20') 2 (e10 in cl2, l15 in cl5)
-('B241_527L15', 'B243_498P3', 'B245a_518K17') 3 (p3 and l15 in cl5)
-('B241_527L15', 'B245a_518K17', 'B245a_521M10') 2
-('B241_527L16', 'B241_528N20', 'B243_496E10') 2
-('B241_527P5', 'B241_528K19', 'B245a_521K15') 2
-('B241_527P5', 'B243_496E10', 'B243_498L10') 3
-('B241_528N8', 'B241_529J16', 'B243_495N16') 2
-('B241_529C4', 'B243_495K23', 'B245a_520E22') 2
-('B243_495K23', 'B243_496E10', 'B245a_520E22') 2
-('B243_496N4', 'B243_498F21', 'B243_498L10') 2
-
-none look to be from same clique
-
-
-below: with proper qcov , 80,80
-('B241_526B17', 'B241_529O19') 25
-('B241_527L16', 'B243_495N16') 45
-('B241_527P5', 'B241_528K19') 28
-('B241_529J11', 'B245a_518E10') 40
-('B243_496N4', 'B243_498L10') 18
-('B243_498F21', 'B245a_521O20') 18
-890 doubletons total 890
-('B241_526B22', 'B243_498F21', 'B245a_520B18') 6
-('B241_526D20', 'B241_527G5', 'B243_498M14') 2
-('B241_527G5', 'B241_527N11', 'B241_528N8') 2
-('B241_527L15', 'B243_498P3', 'B245a_518K17') 2
-('B241_527L15', 'B245a_518K17', 'B245a_521M10') 3
-('B241_527P5', 'B241_528K19', 'B245a_521K15') 2
-('B241_528N8', 'B243_498G3', 'B243_498L10') 2
-('B241_529C4', 'B243_495K23', 'B245a_520E22') 2
-('B243_496N4', 'B243_498L10', 'B245a_519L21') 2
-('B243_496N4', 'B243_498F21', 'B243_498L10') 2
-
-
-'''
