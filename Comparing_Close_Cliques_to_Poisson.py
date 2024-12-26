@@ -1,17 +1,4 @@
-'''
-want to know: how conservative are we being when calling events in the close cliques?
 
-take: the manually found close clique events, for each clique. separate them into number of events/total length of events for each PAIR in the clique
-
-then, to start: for each pair for each clique, plot a hist of SNPs per kb using kashtan alignment
-use 0,1,2 to fit a poisson
-plot the poisson on the same plot
-what is the excess of e.g. 3,4+ SNPs compared to poisson?
-
-can also check: what fraction of kb in our events are flagged as high div verse grandfathered in?
-
-
-'''
 
 import csv
 import numpy as np
@@ -939,47 +926,8 @@ def plot_single_pair_poisson_Official(cell1,cell2,chunklength):
     plt.tight_layout()
     plt.show()
     
-    
-####################################
-#groupname='7-Cell C1 Clique'
-#celllist=clique1_without_ribotype
-clique='1'
-#celllist=C1_without_ribotype[:3]#[celllist[i]+'_C1' for i in range(len(celllist))]
-#go_through_clique_pairs_and_compare_to_poisson(chunklength=1000,gabriel_method=False)#,chunklength=300)#groupname,celllist,clique)#,chunklength=300)
-
-#plot_results(gabriel_method=False)
-#compare_results()
-#coverage_investigator(chunklength=1000)
-
-#compare_results_for_various_probability_cuts_and_violinplot()
-
-#do_C1()
-
-#C1_official()
-
-#do_C1_frac_snps_reco()
-
-#C1_SNPs_official()
 
 
-if 1:
-    chunklength=1000
 
-    if 0:#pair1
-        cell1='B245a_521B10'
-        cell2='B241_528K19'
-    if 0:#pair2
-        cell1='B241_527P5'
-        cell2='B241_528K19'
-    if 0:#pair4
-        cell1='B243_495N16'
-        cell2='B241_527P5'
-    if 1:#want pair without overlap with other cells in pairs
-        cell1=cl2[0][:-3]#C1_without_ribotype[2]#30
-        cell2=cl2[1][:-3]#C1_without_ribotype[1]#10
-    print(cell1,cell2)
-    plot_single_pair_poisson_Official(cell1,cell2,chunklength)
 
-'''
-takeaway: many of the regions are not in 9301, or have diam less than 2%.  A couple anomolies exist where this is not the case, outside of genes 1070-1475 which are excluded from the semi-manual curation due to too many clusters
-'''
+
