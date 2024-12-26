@@ -20,12 +20,7 @@ import Plotting_Repo as plotrepo
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 
-'''
-load arrays
-first, check if genes clusters with ribotypes
-if so, check for berube cells inthe cluster
-outpur
-'''
+
 
 
 def check_for_Berube_SAGs_Clustered_with_ribos(infilematrices,tfna,cluster_cells,group_cells,berube_celllist,groupname_list):
@@ -988,12 +983,3 @@ if 0:
 
     corebool=1
     analyze_other_clusters(cluster_groupname+'_NoClose',diamcut,totcells,cluster_cells,corebool)
-
-if 0:
-    celllist=hliilist2
-    groupname='HLII'
-    tfna='a'
-    corebool=1
-    get_all_diams_and_meds(celllist,tfna,infilematrices,corebool,groupname)
-    #hlii close genes
-    #[48, 49, 52, 123, 125, 193, 197, 199, 201, 208, 209, 210, 212, 237, 306, 307, 329, 424, 426, 427, 429, 430, 432, 433, 434, 435, 437, 438, 439, 441, 448, 470, 488, 490, 560, 570, 576, 577, 578, 580, 608, 609, 610, 611, 670, 717, 730, 836, 841, 842, 846, 847, 857, 922, 923, 974, 982, 1123, 1144, 1211, 1331, 1332, 1350, 1551, 1552, 1558, 1628, 1645, 1646, 1647, 1658, 1659, 1754, 1786, 1787, 1840, 1852, 1856, 1869, 1870, 1874, 1879, 1880, 1881]
