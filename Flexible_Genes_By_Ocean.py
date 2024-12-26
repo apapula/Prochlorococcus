@@ -56,14 +56,6 @@ for item in N_Pacific:
 
         
 
-    
-
-'''
-
-number of flex genes shared by a pair vs frac time pair is from the same ocean
-'''
-
-
 
 
 
