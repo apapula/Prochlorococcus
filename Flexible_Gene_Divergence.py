@@ -1,8 +1,4 @@
-'''
-load the orf numbers
-blastdbcmd
-use old file?
-'''
+
 
 import csv
 import numpy as np
