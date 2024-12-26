@@ -1,8 +1,6 @@
 import matplotlib.pyplot as plt
 import csv
 import math
-#from HLI_twoclusters_lists import Gene308_1, Gene308_2, Gene305_1, Gene305_2, Gene563_1, Gene563_2, Gene581_1,Gene581_2, WG_1, WG_2, WG_3, WG_4
-#from CustomListFile2 import myHLI,myHLII,myHLVI,myHLAll,mynewhandlist
 import numpy as np
 import statistics
 
@@ -12,7 +10,7 @@ from shapely.geometry import Point
 import geopandas as gpd
 from geopandas import GeoDataFrame
 
-#want to plot temperture too for HLII vs HLI 308 B
+
 
 latlongdict={'311':(-20.08,-70.8),'315':(-20.08,-71),'316':(-20.08,-71),'321':(-23.46,-88.77),'323':(-23.46,-88.77),'331':(-23.46,-89),'335':(-26.25,-103.96),'341':(-26.24,-104),'345':(-26.24,-104),'347':(23.75,-158),'402':(23.75,-158),'355':(31,-64),'363':(31,-65),'388':(36,-53.3),'412':(24.7,-67),'409':(9.55,-50.5),'418':(24,-22),'420':(24,-22),'424':(38.3,-69),'429':(26.14,-44.8),'432':(22.33,-36),'436':(17.4,-24.5),'442':(-35,16),'444':(-35,16),'449':(-30,156),'450':(-30,156),'455':(-30,174),'459':(-32.5,-170),'463':(-32.5,-170),'469':(-32.5,-154),'670':(28.14,-158),'673':(29,-158),'676':(32.7,-158),'679':(32,-158),'683':(36.57,-158),'686':(36,-158)}
 
@@ -356,65 +354,5 @@ def extract_seqs(infile,celllist):
     return seqdict
 
 
-#gene_vs_location('../input_data/Aligned_Genes/Gene1645_Aligned.fasta',myHLAll)
-#gene_vs_location('../input_data/Aligned_Genes/Gene1646_Aligned.fasta',myHLAll)
-#gene_vs_location('../input_data/Aligned_Genes/Gene1647_Aligned.fasta',myHLAll)
 
 
-#plotlatlong(myHLI,myHLII,[],[],'')
-
-#wgdiv_vs_location('../input_data/Berube_NT_distancelist.csv',myHLAll)
-
-                
-#plotdepth(Gene308_1,Gene308_2,myHLII,[],'308 Cluster A','308 Cluster B','HLII','')
-#plotdepth(myHLI,myHLII,[],[],'HLI','HLII','','')
-#plotdepth(Gene308_1,['AG-402-N10', 'AG-673-M19', 'AG-670-O11', 'AG-469-N22', 'AG-676-M23'],['AG-676-P03', 'AG-673-O02', 'AG-673-O13', 'AG-679-N22', 'AG-670-L08', 'AG-388-B05', 'AG-388-J02', 'AG-459-P16', 'AG-459-O03', 'AG-442-D10', 'AG-673-L23'],[],'308 Cluster A','308 Cluster B diverged cells','Cluster B closest cells','')
-
-#plotlatlong(Gene308_1,['AG-402-N10', 'AG-673-M19', 'AG-670-O11', 'AG-469-N22', 'AG-676-M23'],['AG-676-P03', 'AG-673-O02', 'AG-673-O13', 'AG-679-N22', 'AG-670-L08', 'AG-388-B05', 'AG-388-J02', 'AG-459-P16', 'AG-459-O03', 'AG-442-D10', 'AG-673-L23'],[],308)
-#plotlatlong(Gene305_1,Gene305_2,305)
-#plotlatlong(Gene581_1,Gene581_2,581)
-#plotlatlong(Gene563_1,Gene563_2,563)
-#plotlatlong(WG_1,WG_2,WG_3,[],'WG')
-           
-#for item in latlongdict:
-    #print(item,return_ocean(item))
-
-
-'''
-311 South Pacific
-315 South Pacific
-316 South Pacific
-321 South Pacific
-323 South Pacific
-331 South Pacific
-335 South Pacific
-341 South Pacific
-345 South Pacific
-347 North Pacific
-402 North Pacific
-355 North Atlantic
-363 North Atlantic
-388 North Atlantic
-412 North Atlantic
-409 North Atlantic
-418 North Atlantic
-420 North Atlantic
-424 North Atlantic
-429 North Atlantic
-432 North Atlantic
-436 North Atlantic
-442 South Atlantic
-444 South Atlantic
-449 South Pacific
-450 South Pacific
-455 South Pacific
-459 South Pacific
-463 South Pacific
-469 South Pacific
-670 North Pacific
-673 North Pacific
-676 North Pacific
-679 North Pacific
-683 North Pacific
-686 North Pacific
-'''
